@@ -3,17 +3,14 @@ package com.goorm.behindyou.domain.notification;
 import com.goorm.behindyou.domain.common.BaseDateTimeEntity;
 import com.goorm.behindyou.domain.keyword.Keyword;
 import com.goorm.behindyou.domain.user.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
 @Builder
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Notification extends BaseDateTimeEntity {
 
