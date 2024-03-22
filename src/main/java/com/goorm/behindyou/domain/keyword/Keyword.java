@@ -3,10 +3,7 @@ package com.goorm.behindyou.domain.keyword;
 import com.goorm.behindyou.domain.common.BaseDateTimeEntity;
 import com.goorm.behindyou.domain.notification.Notification;
 import com.goorm.behindyou.domain.user.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,13 +12,13 @@ import java.util.List;
 @Entity
 @Getter
 @Builder
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Keyword extends BaseDateTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "key_word_id")
+    @Column(name = "keyword_id")
     private Long id;
 
     @Column(columnDefinition = "VARCHAR(255)")
@@ -33,8 +30,9 @@ public class Keyword extends BaseDateTimeEntity {
     @Column(columnDefinition = "VARCHAR(50)")
     private String alertInfo;
 
-    @Column(nullable = false)
     private Long urgency;
+
+    private Long callingCount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -42,4 +40,16 @@ public class Keyword extends BaseDateTimeEntity {
 
     @OneToMany(mappedBy = "keyword", cascade = CascadeType.ALL)
     private List<Notification> notificationList = new ArrayList<>();
+
+    public Keyword updateCallingCount() {
+        this.callingCount += 1;
+        return this;
+    }
+
+    public void setUser(User user) {
+        if (this.user != null)
+            user.getKeyWordList().remove(this);
+        this.user = user;
+        user.getKeyWordList().add(this);
+    }
 }
