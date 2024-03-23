@@ -2,8 +2,10 @@ package com.goorm.behindyou.web.controller;
 
 import com.goorm.behindyou.apiPayload.ApiResponse;
 import com.goorm.behindyou.converter.UserConverter;
+import com.goorm.behindyou.domain.user.User;
 import com.goorm.behindyou.service.UserService.UserCommandService;
 import com.goorm.behindyou.validation.annotation.ExistUser;
+import com.goorm.behindyou.web.dto.UserRequestDTO;
 import com.goorm.behindyou.web.dto.UserResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -12,10 +14,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
@@ -38,5 +39,16 @@ public class UserRestController {
     public ApiResponse<UserResponseDTO.updateUserResultDTO> updateUserNotification(@RequestParam(name = "userId") @ExistUser Long userId) {
         userCommandService.updateUser(userId);
         return ApiResponse.onSuccess(UserConverter.toUpdateUserDTO(userId));
+    }
+
+    @PostMapping("/join")
+    @Operation(summary = "사용자 회원가입 API", description = "회원가입을 위한 API이며, request body로 입력 값을 받는다. ")
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200", description = "OK, 성공")
+    })
+    public ApiResponse<UserResponseDTO.joinUserResultDTO> join(@RequestBody @Valid UserRequestDTO.joinUserDTO request) {
+
+        User user = userCommandService.joinUser(request);
+        return ApiResponse.onSuccess(UserConverter.toJoinResultDTO(user));
     }
 }
