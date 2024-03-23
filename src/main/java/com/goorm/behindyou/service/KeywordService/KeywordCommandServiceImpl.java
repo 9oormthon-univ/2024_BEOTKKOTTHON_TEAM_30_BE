@@ -28,7 +28,14 @@ public class KeywordCommandServiceImpl implements KeywordCommandService {
 
         newKeyword.setUser(newUser);
         keywordRepository.save(newKeyword);
-        
+
         return newKeyword;
+    }
+
+    @Override
+    @Transactional
+    public void deleteKeyword(Long keywordId) {
+        Keyword keyword = keywordRepository.findById(keywordId).get();
+        keywordRepository.delete(keyword);
     }
 }

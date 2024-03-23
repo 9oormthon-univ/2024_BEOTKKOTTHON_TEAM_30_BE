@@ -41,4 +41,18 @@ public class KeywordRestController {
         return ApiResponse.onSuccess(KeywordConverter.toUploadKeywordResultDTO(keyword));
     }
 
+    @DeleteMapping("/keyword/{keywordId}")
+    @Operation(summary = "키워드 삭제 API", description = "키워드 삭제를 위한 API이며, path variavle로 입력 값을 받는다. " +
+            "keywordId : 삭제하고자 할 키워드의 id")
+    @Parameters(value = {
+            @Parameter(name = "keywordId", description = "키워드 아이디, 삭제하고자 하는 키워드를 식별하기 위해 사용.")
+    })
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200", description = "OK, 성공")
+    })
+    public ApiResponse<KeywordResponseDTO.DeleteKeywordResultDTO> delete(@PathVariable(name = "keywordId") Long keywordId) {
+        keywordCommandService.deleteKeyword(keywordId);
+        return ApiResponse.onSuccess(KeywordConverter.toDeleterKeywordResultDTO(keywordId));
+    }
+
 }
