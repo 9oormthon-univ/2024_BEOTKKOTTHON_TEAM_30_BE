@@ -93,4 +93,21 @@ public class KeywordRestController {
         Page<Keyword> keywordList = keywordQueryService.getMyKeywordList(userId, page - 1);
         return ApiResponse.onSuccess(KeywordConverter.keywordPreviewListDTO(keywordList));
     }
+
+    @GetMapping("/keyword/recognize/{userId}")
+    @Operation(summary = "키워드 인식 API", description = "나의 전체 키워드 중 입력된 키워드를 인식하기 위한 API이며, path variable과 query string으로 입력 값을 받는다. " +
+            "userId : 조회하고자 할 사용자의 id \n\n inputMessage : 번역된 음성의 값")
+    @Parameters(value = {
+            @Parameter(name = "userId", description = "사용자 아이디, 조회하고자 하는 사용자의 키워드를 식별 위해 사용."),
+            @Parameter(name = "inputMessage", description = "번역된 음성의 값. String으로 넘겨주세요")
+    })
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200", description = "OK, 성공")
+    })
+    public ApiResponse<KeywordResponseDTO.RecognizeResultDTO> keywordRecognize(@ExistUser @PathVariable(name = "userId") Long userId,
+                                                                               @RequestParam(name = "inputMessage") String inputMessage) {
+
+        Keyword keyword = keywordCommandService.keywordRecognize(userId, inputMessage);
+        return ApiResponse.onSuccess(KeywordConverter.keywordRecognize(keyword));
+    }
 }

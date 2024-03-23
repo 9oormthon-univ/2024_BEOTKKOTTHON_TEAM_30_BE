@@ -10,4 +10,6 @@ public interface KeywordCommandService {
     public void deleteKeyword(Long keywordId);
 
     public void updateNotification(Long keywordId);
+
+    public Keyword keywordRecognize(Long userId, String inputMessage);
 }

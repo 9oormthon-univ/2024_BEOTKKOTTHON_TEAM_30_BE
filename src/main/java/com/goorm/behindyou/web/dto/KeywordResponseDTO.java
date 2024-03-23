@@ -39,6 +39,17 @@ public class KeywordResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
+    public static class RecognizeResultDTO {
+        String name;
+        String type;
+        String alertMessage;
+        Long urgency;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class KeywordContentDTO {
         String name;
         String type;

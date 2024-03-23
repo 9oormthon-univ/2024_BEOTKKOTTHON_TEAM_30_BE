@@ -16,6 +16,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -59,5 +61,22 @@ public class KeywordCommandServiceImpl implements KeywordCommandService {
         Keyword keyword = keywordRepository.findById(keywordId).orElseThrow(() -> new KeywordHandler(ErrorStatus.KEYWORD_NOT_FOUND));
         Notification notification = notificationRepository.findByKeyword(keyword);
         notification.updateStatus();
+    }
+
+    @Override
+    @Transactional
+    public Keyword keywordRecognize(Long userId, String inputMessage) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new UserHandler(ErrorStatus.USER_NOT_FOUND));
+        Keyword result = null;
+        List<Keyword> keywordList = keywordRepository.findAllByUserId(userId);
+        for (Keyword keyword : keywordList) {
+            if (inputMessage.contains(keyword.getName())) {
+                result = keyword;
+            }
+        }
+
+        result.updateCallingCount();
+
+        return result;
     }
 }
