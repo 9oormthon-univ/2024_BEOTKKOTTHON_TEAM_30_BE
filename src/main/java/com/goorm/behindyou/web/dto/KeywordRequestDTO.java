@@ -21,6 +21,6 @@ public class KeywordRequestDTO {
         @Nullable
         Long callingCount;
         @NotNull
-        String alertInfo;
+        String alertMessage;
     }
 }

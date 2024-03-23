@@ -21,14 +21,14 @@ public class Keyword extends BaseDateTimeEntity {
     @Column(name = "keyword_id")
     private Long id;
 
-    @Column(columnDefinition = "VARCHAR(255)")
+    @Column(columnDefinition = "VARCHAR(50)")
     private String name;
 
     @Column(columnDefinition = "VARCHAR(50)")
     private String type;
 
-    @Column(columnDefinition = "VARCHAR(50)")
-    private String alertInfo;
+    @Column(columnDefinition = "text")
+    private String alertMessage;
 
     private Long urgency;
 

@@ -14,7 +14,7 @@ public class KeywordConverter {
         return Keyword.builder()
                 .name(request.getName())
                 .type(request.getType())
-                .alertInfo(request.getAlertInfo())
+                .alertMessage(request.getAlertMessage())
                 .urgency(request.getUrgency())
                 .callingCount(0L)
                 .notificationList(new ArrayList<>())
@@ -39,7 +39,7 @@ public class KeywordConverter {
                 .name(keyword.getName())
                 .type(keyword.getType())
                 .urgency(keyword.getUrgency())
-                .alertInfo(keyword.getAlertInfo())
+                .alertMessage(keyword.getAlertMessage())
                 .callingCount(keyword.getCallingCount())
                 .build();
     }

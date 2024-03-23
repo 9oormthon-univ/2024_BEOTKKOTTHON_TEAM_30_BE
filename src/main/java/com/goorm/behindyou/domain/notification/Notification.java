@@ -21,9 +21,6 @@ public class Notification extends BaseDateTimeEntity {
 
     private Long status;
 
-    @Column(columnDefinition = "text")
-    private String alarmMessage;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;

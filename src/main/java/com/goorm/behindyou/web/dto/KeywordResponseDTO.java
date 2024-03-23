@@ -33,7 +33,7 @@ public class KeywordResponseDTO {
     public static class KeywordContentDTO {
         String name;
         String type;
-        String alertInfo;
+        String alertMessage;
         Long urgency;
         Long callingCount;
     }
