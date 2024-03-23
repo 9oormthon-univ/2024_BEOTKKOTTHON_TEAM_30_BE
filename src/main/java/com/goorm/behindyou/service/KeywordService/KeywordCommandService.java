@@ -8,4 +8,6 @@ public interface KeywordCommandService {
     public Keyword uploadKeyword(Long userId, KeywordRequestDTO.UploadKeywordDTO request);
 
     public void deleteKeyword(Long keywordId);
+
+    public void updateNotification(Long keywordId);
 }

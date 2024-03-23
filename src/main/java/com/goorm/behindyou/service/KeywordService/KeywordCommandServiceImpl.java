@@ -52,4 +52,12 @@ public class KeywordCommandServiceImpl implements KeywordCommandService {
         notificationRepository.delete(notification);
         keywordRepository.delete(keyword);
     }
+
+    @Override
+    @Transactional
+    public void updateNotification(Long keywordId) {
+        Keyword keyword = keywordRepository.findById(keywordId).orElseThrow(() -> new KeywordHandler(ErrorStatus.KEYWORD_NOT_FOUND));
+        Notification notification = notificationRepository.findByKeyword(keyword);
+        notification.updateStatus();
+    }
 }

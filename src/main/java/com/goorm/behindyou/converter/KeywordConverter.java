@@ -34,6 +34,12 @@ public class KeywordConverter {
                 .build();
     }
 
+    public static KeywordResponseDTO.updateNotificationResultDTO toUpdateNotificationStatusResultDTO(Long keywordId) {
+        return KeywordResponseDTO.updateNotificationResultDTO.builder()
+                .keywordId(keywordId)
+                .build();
+    }
+
     public static KeywordResponseDTO.KeywordContentDTO toGetKeywordContentDTO(Keyword keyword) {
         return KeywordResponseDTO.KeywordContentDTO.builder()
                 .name(keyword.getName())
