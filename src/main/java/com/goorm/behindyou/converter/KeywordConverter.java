@@ -33,4 +33,14 @@ public class KeywordConverter {
                 .keywordId(keywordId)
                 .build();
     }
+
+    public static KeywordResponseDTO.KeywordContentDTO toGetKeywordContentDTO(Keyword keyword) {
+        return KeywordResponseDTO.KeywordContentDTO.builder()
+                .name(keyword.getName())
+                .type(keyword.getType())
+                .urgency(keyword.getUrgency())
+                .alertInfo(keyword.getAlertInfo())
+                .callingCount(keyword.getCallingCount())
+                .build();
+    }
 }
