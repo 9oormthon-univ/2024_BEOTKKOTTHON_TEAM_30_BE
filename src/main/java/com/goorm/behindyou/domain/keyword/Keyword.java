@@ -21,7 +21,7 @@ public class Keyword extends BaseDateTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "key_word_id")
+    @Column(name = "keyword_id")
     private Long id;
 
     @Column(columnDefinition = "VARCHAR(255)")
