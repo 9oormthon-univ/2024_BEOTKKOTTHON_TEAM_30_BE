@@ -22,6 +22,9 @@ public enum ErrorStatus implements BaseErrorCode {
     // 키워드 관련 에러
     KEYWORD_NOT_FOUND(HttpStatus.NOT_FOUND, "KEYWORD4001", "존재하지 않는 키워드입니다."),
 
+    // 페이지 관련 에러
+    PAGE_NEGATIVE_INPUT(HttpStatus.BAD_REQUEST, "PAGE4001", "잘못된 페이지 입력 값 입니다."),
+
 
     // test
     TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "이거는 테스트");

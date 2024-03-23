@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class KeywordResponseDTO {
 
@@ -44,5 +45,28 @@ public class KeywordResponseDTO {
         String alertMessage;
         Long urgency;
         Long callingCount;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class KeywordPreviewDTO {
+        String name;
+        String type;
+        Long callingCounts;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class KeywordPreviewListDTO {
+        List<KeywordPreviewDTO> keywordList;
+        Integer listSize;
+        Integer totalPage;
+        Long totalElements;
+        Boolean isFirst;
+        Boolean isLast;
     }
 }
