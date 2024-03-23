@@ -37,4 +37,12 @@ public class User extends BaseDateTimeEntity {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Notification> notificationList = new ArrayList<>();
+
+    public void updateStatus() {
+        if (this.alarmStatus == 0L) {
+            this.alarmStatus = 1L;
+        } else if (this.alarmStatus == 1L) {
+            this.alarmStatus = 0L;
+        }
+    }
 }
