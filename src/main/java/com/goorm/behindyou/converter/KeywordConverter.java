@@ -27,4 +27,10 @@ public class KeywordConverter {
                 .createdAt(LocalDateTime.now())
                 .build();
     }
+
+    public static KeywordResponseDTO.DeleteKeywordResultDTO toDeleterKeywordResultDTO(Long keywordId) {
+        return KeywordResponseDTO.DeleteKeywordResultDTO.builder()
+                .keywordId(keywordId)
+                .build();
+    }
 }

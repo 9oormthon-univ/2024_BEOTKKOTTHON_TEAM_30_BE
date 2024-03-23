@@ -17,4 +17,12 @@ public class KeywordResponseDTO {
         Long keywordId;
         LocalDateTime createdAt;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class DeleteKeywordResultDTO {
+        Long keywordId;
+    }
 }
