@@ -74,4 +74,13 @@ public class KeywordConverter {
                 .build();
 
     }
+
+    public static KeywordResponseDTO.RecognizeResultDTO keywordRecognize(Keyword keyword) {
+        return KeywordResponseDTO.RecognizeResultDTO.builder()
+                .name(keyword.getName())
+                .type(keyword.getType())
+                .urgency(keyword.getUrgency())
+                .alertMessage(keyword.getAlertMessage())
+                .build();
+    }
 }
