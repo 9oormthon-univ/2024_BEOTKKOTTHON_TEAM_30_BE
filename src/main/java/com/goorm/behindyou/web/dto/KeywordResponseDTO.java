@@ -25,4 +25,16 @@ public class KeywordResponseDTO {
     public static class DeleteKeywordResultDTO {
         Long keywordId;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class KeywordContentDTO {
+        String name;
+        String type;
+        String alertInfo;
+        Long urgency;
+        Long callingCount;
+    }
 }

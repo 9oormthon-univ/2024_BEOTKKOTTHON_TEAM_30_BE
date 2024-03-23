@@ -1,5 +1,7 @@
 package com.goorm.behindyou.service.KeywordService;
 
+import com.goorm.behindyou.apiPayload.code.status.ErrorStatus;
+import com.goorm.behindyou.apiPayload.exception.handler.UserHandler;
 import com.goorm.behindyou.converter.KeywordConverter;
 import com.goorm.behindyou.domain.keyword.Keyword;
 import com.goorm.behindyou.domain.user.User;
@@ -24,7 +26,7 @@ public class KeywordCommandServiceImpl implements KeywordCommandService {
 
         Keyword newKeyword = KeywordConverter.toKeyword(request);
 
-        User newUser = userRepository.findById(userId).get();
+        User newUser = userRepository.findById(userId).orElseThrow(() -> new UserHandler(ErrorStatus.USER_NOT_FOUND));
 
         newKeyword.setUser(newUser);
         keywordRepository.save(newKeyword);
