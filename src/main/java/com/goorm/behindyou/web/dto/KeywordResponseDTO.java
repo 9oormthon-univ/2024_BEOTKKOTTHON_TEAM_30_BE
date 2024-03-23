@@ -30,6 +30,14 @@ public class KeywordResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
+    public static class updateNotificationResultDTO {
+        Long keywordId;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class KeywordContentDTO {
         String name;
         String type;

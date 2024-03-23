@@ -42,4 +42,12 @@ public class Notification extends BaseDateTimeEntity {
         this.keyword = keyword;
         keyword.getNotificationList().add(this);
     }
+
+    public void updateStatus() {
+        if (this.status == 0L) {
+            this.status = 1L;
+        } else if (this.status == 1L) {
+            this.status = 0L;
+        }
+    }
 }
