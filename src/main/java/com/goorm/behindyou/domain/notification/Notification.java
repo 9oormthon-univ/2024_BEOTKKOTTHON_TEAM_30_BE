@@ -28,4 +28,18 @@ public class Notification extends BaseDateTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "keyword_id")
     private Keyword keyword;
+
+    public void setUser(User user) {
+        if (this.user != null)
+            user.getNotificationList().remove(this);
+        this.user = user;
+        user.getNotificationList().add(this);
+    }
+
+    public void setKeyword(Keyword keyword) {
+        if (this.keyword != null)
+            keyword.getNotificationList().remove(this);
+        this.keyword = keyword;
+        keyword.getNotificationList().add(this);
+    }
 }
